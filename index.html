@@ -20,8 +20,11 @@
   <meta name="twitter:site" content="@DreamingSaints">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Cinzel+Decorative:wght@700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Cinzel+Decorative:wght@700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Cinzel+Decorative:wght@700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Cinzel+Decorative:wght@700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet"></noscript>
   <link rel="preload" as="image" href="media/marble.avif" type="image/avif">
+  <link rel="preload" as="image" href="media/aqua-1.webp" type="image/webp" fetchpriority="high">
   <link rel="stylesheet" href="styles.css">
   <script type="application/ld+json">
   {
@@ -39,6 +42,93 @@
     ]
   }
   </script>
+  <script type="application/ld+json">
+  [
+ {
+  "@context": "https://schema.org",
+  "@type": "VideoGame",
+  "name": "COLLAPSE MACHINE",
+  "description": "Tesla-punk co-op open-world immersive sim",
+  "url": "https://store.steampowered.com/app/2980830/COLLAPSE_MACHINE/",
+  "image": "https://dreamingsaints.com/media/collapse-capsule.jpg",
+  "genre": [
+   "Action",
+   "Adventure",
+   "RPG",
+   "Simulation"
+  ],
+  "gamePlatform": "Steam",
+  "author": {
+   "@type": "Organization",
+   "name": "Dreaming Saints",
+   "url": "https://dreamingsaints.com"
+  }
+ },
+ {
+  "@context": "https://schema.org",
+  "@type": "VideoGame",
+  "name": "Ball-Aqua",
+  "description": "Tropical ball-rolling multiplayer",
+  "url": "https://store.steampowered.com/app/4967660/",
+  "image": "https://dreamingsaints.com/media/aqua-capsule.jpg",
+  "genre": [
+   "Action",
+   "Racing",
+   "Casual"
+  ],
+  "gamePlatform": "Steam",
+  "author": {
+   "@type": "Organization",
+   "name": "Dreaming Saints",
+   "url": "https://dreamingsaints.com"
+  }
+ },
+ {
+  "@context": "https://schema.org",
+  "@type": "VideoGame",
+  "name": "Whomers Ate My Lawn!",
+  "description": "A lawn of tiny pets",
+  "url": "https://store.steampowered.com/app/3600250/Whomers_Ate_My_Lawn/",
+  "image": "https://dreamingsaints.com/media/whomers-capsule.jpg",
+  "genre": [
+   "Casual",
+   "Simulation"
+  ],
+  "gamePlatform": "Steam",
+  "author": {
+   "@type": "Organization",
+   "name": "Dreaming Saints",
+   "url": "https://dreamingsaints.com"
+  },
+  "datePublished": "2025-04-06",
+  "offers": {
+   "@type": "Offer",
+   "price": "0.99",
+   "priceCurrency": "USD",
+   "url": "https://store.steampowered.com/app/3600250/Whomers_Ate_My_Lawn/"
+  },
+  "operatingSystem": "Windows"
+ },
+ {
+  "@context": "https://schema.org",
+  "@type": "VideoGame",
+  "name": "RISING BONEvR",
+  "description": "A physics climb out of hell",
+  "url": "https://store.steampowered.com/app/1775350/RISING_BONEvR/",
+  "image": "https://dreamingsaints.com/media/bone-capsule.jpg",
+  "genre": [
+   "Action",
+   "Adventure"
+  ],
+  "gamePlatform": "Steam",
+  "author": {
+   "@type": "Organization",
+   "name": "Dreaming Saints",
+   "url": "https://dreamingsaints.com"
+  }
+ }
+]
+  </script>
 </head>
 <body>
   <a class="skip" href="#games">Skip to the games</a>
@@ -48,7 +138,7 @@
       <img src="media/mark-64.png" alt="" width="40" height="40">
       Dreaming Saints
     </a>
-    <button class="menu" aria-expanded="false" aria-controls="pagenav" aria-label="Menu"><span></span></button>
+    <button type="button" class="menu" aria-expanded="false" aria-controls="pagenav" aria-label="Menu"><span></span></button>
     <nav id="pagenav" aria-label="Page">
       <a href="#games">Games</a>
       <a href="#chronicle">Chronicle</a>
