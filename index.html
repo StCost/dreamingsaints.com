@@ -5,17 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Dreaming Saints</title>
   <meta name="description" content="Dreaming Saints makes COLLAPSE MACHINE, Ball-Aqua, Whomers Ate My Lawn!, and RISING BONEvR.">
-  <meta name="theme-color" content="#14110e">
-  <link rel="icon" href="media/mark.png" type="image/png">
+  <meta name="theme-color" content="#1c1814">
+  <link rel="icon" href="media/mark-64.png" type="image/png">
+  <link rel="apple-touch-icon" href="media/mark-192.png">
   <link rel="canonical" href="https://dreamingsaints.com/">
   <meta property="og:title" content="Dreaming Saints">
   <meta property="og:description" content="COLLAPSE MACHINE, Ball-Aqua, Whomers Ate My Lawn!, and RISING BONEvR.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://dreamingsaints.com/">
-  <meta property="og:image" content="media/mark.png">
+  <meta property="og:image" content="https://dreamingsaints.com/media/og-card.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@DreamingSaints">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Cinzel+Decorative:wght@700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="media/marble.avif" type="image/avif">
   <link rel="stylesheet" href="styles.css">
   <script type="application/ld+json">
   {
@@ -39,10 +45,11 @@
 
   <header class="nav">
     <a class="brand" href="#top">
-      <img src="media/mark.png" alt="" width="36" height="36">
+      <img src="media/mark-64.png" alt="" width="40" height="40">
       Dreaming Saints
     </a>
-    <nav aria-label="Page">
+    <button class="menu" aria-expanded="false" aria-controls="pagenav" aria-label="Menu"><span></span></button>
+    <nav id="pagenav" aria-label="Page">
       <a href="#games">Games</a>
       <a href="#chronicle">Chronicle</a>
       <a href="#find">Find us</a>
@@ -53,8 +60,10 @@
     <section class="hero" aria-labelledby="title">
       <canvas id="dream" aria-hidden="true"></canvas>
       <div class="hero-copy">
+        <svg class="arch" viewBox="0 0 600 700" aria-hidden="true" preserveAspectRatio="none"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFF3C4"/><stop offset=".35" stop-color="#E6C36A"/><stop offset=".6" stop-color="#9B7428"/><stop offset="1" stop-color="#E6C36A"/></linearGradient></defs><path d="M20 700V300A280 280 0 0 1 580 300V700" fill="none" stroke="url(#g)" stroke-width="6"/><path d="M38 700V300A262 262 0 0 1 562 300V700" fill="none" stroke="url(#g)" stroke-width="1.5"/><path d="M285 14h30l-6 34h-18z" fill="url(#g)"/></svg>
         <p class="kicker">Game studio</p>
-        <h1 id="title">Dreaming Saints</h1>
+        <h1 id="title">Dreaming <span>Saints</span></h1>
+        <img class="laurel" src="media/ornament.svg" alt="" width="220" height="28">
         <p class="lede">Four games, from a tesla-punk wasteland to a lawn full of tiny creatures.</p>
         <div class="hero-actions">
           <a class="btn solid" href="#games">The games</a>
@@ -68,9 +77,10 @@
         <h2 id="games-title">The games</h2>
         <p>All of them are on Steam, made by Dreaming Saints. The dev notes live on the <a href="https://dreamingsaints.github.io/blog/">blog</a>.</p>
       </header>
+      <hr class="ornament">
 
-      <article class="game">
-        <div class="frame"><img src="media/collapse-capsule.jpg" alt="COLLAPSE MACHINE"></div>
+      <article class="game"><span class="numeral" aria-hidden="true">IV</span><span class="numeral" aria-hidden="true">III</span><span class="numeral" aria-hidden="true">II</span><span class="numeral" aria-hidden="true">I</span>
+        <div class="frame"><picture><source srcset="media/collapse-capsule.avif" type="image/avif"><source srcset="media/collapse-capsule.webp" type="image/webp"><img src="media/collapse-capsule.jpg" alt="COLLAPSE MACHINE" loading="lazy" decoding="async" width="616" height="353"></picture></div>
         <div>
           <p class="status">In development since September 2023</p>
           <h3>COLLAPSE MACHINE</h3>
@@ -82,7 +92,7 @@
       </article>
 
       <article class="game">
-        <div class="frame"><img src="media/aqua-1.jpg" alt="Ball-Aqua, a glass ball rolling through a lily pond"></div>
+        <div class="frame"><picture><source srcset="media/aqua-1.avif" type="image/avif"><source srcset="media/aqua-1.webp" type="image/webp"><img src="media/aqua-1.jpg" alt="Ball-Aqua, a glass ball rolling through a lily pond" loading="lazy" decoding="async" width="1920" height="1080"></picture></div>
         <div>
           <p class="status">Demo 20 August 2026 · full game 25 February 2027</p>
           <h3>Ball-Aqua</h3>
@@ -97,7 +107,7 @@
       </article>
 
       <article class="game">
-        <div class="frame"><img src="media/whomers-capsule.jpg" alt="Whomers Ate My Lawn!"></div>
+        <div class="frame"><picture><source srcset="media/whomers-capsule.avif" type="image/avif"><source srcset="media/whomers-capsule.webp" type="image/webp"><img src="media/whomers-capsule.jpg" alt="Whomers Ate My Lawn!" loading="lazy" decoding="async" width="616" height="353"></picture></div>
         <div>
           <p class="status">Released 6 April 2025 · $0.99</p>
           <h3>Whomers Ate My Lawn!</h3>
@@ -109,7 +119,7 @@
       </article>
 
       <article class="game">
-        <div class="frame"><img src="media/bone-capsule.jpg" alt="RISING BONEvR"></div>
+        <div class="frame"><picture><source srcset="media/bone-capsule.avif" type="image/avif"><source srcset="media/bone-capsule.webp" type="image/webp"><img src="media/bone-capsule.jpg" alt="RISING BONEvR" loading="lazy" decoding="async" width="616" height="353"></picture></div>
         <div>
           <p class="status">Demo 7 November 2021</p>
           <h3>RISING BONEvR</h3>
@@ -169,8 +179,10 @@
   </main>
 
   <footer class="colophon">
-    <p>Dreaming Saints</p>
+    <hr class="ornament">
+    <p class="sig">Dreaming Saints</p>
     <p><a href="mailto:dreamingsaints@gmail.com">dreamingsaints@gmail.com</a></p>
+    <p class="fine">Marble and ornaments drawn for this page.</p>
   </footer>
   <script src="dream.js"></script>
 </body>

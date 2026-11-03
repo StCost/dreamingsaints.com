@@ -3,20 +3,20 @@
   if (!canvas) return;
   var ctx = canvas.getContext("2d");
   var sources = [
-    "media/aqua-1.jpg",
-    "media/aqua-2.jpg",
-    "media/aqua-3.jpg",
-    "media/whomers-capsule.jpg",
-    "media/bone-hero.jpg",
-    "media/bone-capsule.jpg",
-    "media/collapse-capsule.jpg",
-    "media/aqua-capsule.jpg"
+    "media/aqua-1.webp",
+    "media/bone-hero.webp",
+    "media/collapse-capsule.webp",
+    "media/whomers-capsule.webp",
+    "media/aqua-2.webp",
+    "media/bone-capsule.webp"
   ];
   var images = [];
   var loaded = 0;
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var start = performance.now();
   var hold = 7.5;
+  var low = (navigator.hardwareConcurrency || 4) <= 4 || (navigator.deviceMemory || 4) <= 2;
+  var visible = true, running = false, last = 0;
 
   function resize() {
     var rect = canvas.parentElement.getBoundingClientRect();
@@ -30,7 +30,7 @@
     var h = canvas.height;
     var ir = img.width / img.height;
     var cr = w / h;
-    var zoom = 1.12 + Math.sin(t * 0.17) * 0.03;
+    var zoom = 1.16 + Math.sin(t * 0.17) * 0.03;
     var dw, dh;
     if (ir > cr) {
       dh = h * zoom;
@@ -58,7 +58,7 @@
     var bctx = dream.bctx;
     bctx.clearRect(0, 0, buffer.width, buffer.height);
     cover(bctx, img, t);
-    var slices = reduce ? 1 : 18;
+    var slices = reduce ? 1 : (low ? 6 : 10);
     var sh = canvas.height / slices;
     ctx.save();
     ctx.globalAlpha = alpha;
@@ -69,7 +69,7 @@
         var wave = Math.sin(t * 0.85 + i * 0.38) * canvas.width * 0.012;
         var sy = Math.floor(i * sh);
         var sheight = Math.ceil(sh) + 1;
-        ctx.drawImage(buffer, 0, sy, canvas.width, sheight, wave, sy, canvas.width, sheight);
+        ctx.drawImage(buffer, 0, sy, canvas.width, sheight, wave - canvas.width * 0.02, sy, canvas.width * 1.04, sheight);
       }
     }
     ctx.restore();
@@ -95,8 +95,8 @@
       canvas.width * 0.5, canvas.height * 0.45, canvas.width * 0.15,
       canvas.width * 0.5, canvas.height * 0.5, canvas.width * 0.75
     );
-    g.addColorStop(0, "rgba(28,24,20,0)");
-    g.addColorStop(1, "rgba(20,16,12,0.45)");
+    g.addColorStop(0, "rgba(28,24,20,0.25)");
+    g.addColorStop(1, "rgba(20,16,12,0.7)");
     ctx.fillStyle = g;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     if (reduce) return;
@@ -117,8 +117,11 @@
   }
 
   function frame(now) {
+    if (!visible || document.hidden) { running = false; return; }
+    if (now - last < 33) { requestAnimationFrame(frame); return; }
+    last = now;
     var t = (now - start) / 1000;
-    ctx.fillStyle = "#14110e";
+    ctx.fillStyle = "#1c1814";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     if (images.length) {
       var index = Math.floor(t / hold) % images.length;
@@ -130,18 +133,32 @@
       if (fade > 0) dream(images[next], t + 1.7, fade);
     }
     veil(t);
-    if (!reduce) requestAnimationFrame(frame);
+    if (!reduce) requestAnimationFrame(frame); else running = false;
   }
 
-  sources.forEach(function (src) {
+  function kick() { if (!running) { running = true; requestAnimationFrame(frame); } }
+  var i0 = 0;
+  function loadNext() {
+    if (i0 >= sources.length) return;
     var img = new Image();
     img.onload = function () {
       images.push(img);
       loaded += 1;
-      if (loaded === 1) requestAnimationFrame(frame);
+      if (loaded === 1) kick();
+      if (!reduce) setTimeout(loadNext, 400);
     };
-    img.src = src;
-  });
+    img.src = sources[i0++];
+  }
+  loadNext();
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(function (e) { visible = e[0].isIntersecting; if (visible && !reduce) kick(); }).observe(canvas);
+  }
+  document.addEventListener("visibilitychange", function () { if (!document.hidden && !reduce) kick(); });
+  var btn = document.querySelector(".menu"), bar = document.querySelector(".nav");
+  if (btn) {
+    btn.addEventListener("click", function () { var o = bar.classList.toggle("open"); btn.setAttribute("aria-expanded", o); });
+    bar.querySelectorAll("nav a").forEach(function (a) { a.addEventListener("click", function () { bar.classList.remove("open"); btn.setAttribute("aria-expanded", "false"); }); });
+  }
 
   resize();
   seedFlakes();
